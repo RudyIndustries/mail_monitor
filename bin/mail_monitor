@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+begin
+  require 'rubygems'
+  gem 'mail_monitor'
+rescue LoadError
+end
+
+module MailMonitor
+  ## Define options
+  # example # REDUCE_COMPAT = true if ARGV.include?("--reduce-compat")
+end
+
+require 'mail_monitor'
+
+MailMonitor.application.run
