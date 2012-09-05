@@ -1,7 +1,13 @@
-#!/usr/bin/env ruby
 require 'rubygems'
 require 'mail'
+require 'mail_monitor/monitor'
+require 'mail_monitor/mail_monitor_module'
 
+
+
+
+
+=begin
 #TIME_FREQUENCY = ARGV[0].to_f;
 
 #notify_emails = ARGV[1].split(';')
@@ -33,7 +39,6 @@ end
 
 
 
-=begin
 while true do
   sleep( TIME_FREQUENCY)
   if ( last == Mail.last)
