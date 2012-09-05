@@ -4,17 +4,22 @@ module MailMonitor
 
   class Monitor
     
-    # @return [Int] the frequency the polling_address will be polled
+    # @return [Int] the frequency in seconds the polling_address will be polled
     attr_accessor :frequency
 
-    # @return [String] the address to be polled from
-    attr_accessor :polling_address 
+    # @return [Mail::Retriver] the address to be polled from
+    attr_accessor :retriver
 
-    # @return [Array] the addresses to be notified when fault is identified.
-    attr_accessor :notify_addresses
+    # @return [Mail::Message] the addresses to be notified when fault is identified.
+    attr_accessor :notifier
 
-    def initialize 
-
+    # @param [Int] frequency the frequency in seconds the polling_address will be polled
+    # @param [Mail::Retriver] reciever the mail object for polling the mailbox
+    # @param [Mail::Message] 
+    def initialize frequency = 1800, reciever, notifier
+      @frequency = frequency
+      @reciever = retriver
+      @notifier = notifier
     end
 
     # Begin monitoring the mailbox
