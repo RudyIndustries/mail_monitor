@@ -10,7 +10,7 @@ module MailMonitor
     # @return [Mail::Retriver] the address to be polled from
     attr_accessor :retriver
 
-    # @return [Mail::Message] the addresses to be notified when fault is identified.
+    # @return [Notifier] the addresses to be notified when fault is identified.
     attr_accessor :notifier
 
     # @param [Int] frequency the frequency in seconds the polling_address will be polled
