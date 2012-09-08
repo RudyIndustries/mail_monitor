@@ -9,7 +9,7 @@ module MailMonitor
   # command line, a MailMonitor::Application object is created and run.
   #
   class Application
-    
+
     # @return [Int] the frequency in seconds the polling_address will be polled
     attr_accessor :frequency
 
@@ -21,18 +21,31 @@ module MailMonitor
 
 
     def run
-      ARGV[0]
-      Monitor
+      mail = Mail.defaults do
+        delivery_method :smtp, { :address              => 'smtp.gmail.com',
+                                 :port                 => 587,
+                                 :domain               => 'gmail.com',
+                                 :user_name            => 'larry.testone@gmail.com',
+                                 :password             => 'NzoDUsi89lMF',
+                                 :authentication       => 'plain',
+                                 :enable_starttls_auto => true }
+        retriever_method :imap, { :address    => 'imap.googlemail.com',
+                                  :port       => 993,
+                                  :user_name  => 'larry.testone@gmail.com',
+                                  :password   => 'NzoDUsi89lMF',
+                                  :enable_ssl => true }
+      end
+      monitor = Monitor.new mail
+      monitor.start
+
     end
-    
 
     # gets the arguments input
+    #
     def argv
       check_argv
       config = YAML.load_file( ARGV[0]) #TODO Some kind of catch/rescue
-      mail = Mail
-      @notifier = Notifier.new notify_addresses
-      retriver.defaults = 
+      @notifier.deliver
     end
 
     private

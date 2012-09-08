@@ -1,37 +1,53 @@
+require 'mail'
+
 # @author Kurt Robert Rudolph (rudolph9)
 #
 module MailMonitor
 
   class Monitor
-    
-    # @return [Int] the frequency in seconds the polling_address will be polled
-    attr_accessor :frequency
 
-    # @return [Mail::Retriver] the address to be polled from
-    attr_accessor :retriver
-
-    # @return [Notifier] the addresses to be notified when fault is identified.
-    attr_accessor :notifier
-
+    #
+    #
     # @param [Int] frequency the frequency in seconds the polling_address will be polled
-    # @param [Mail::Retriver] reciever the mail object for polling the mailbox
-    # @param [Mail::Message] 
-    def initialize frequency = 1800, reciever, notifier
+    def initialize frequency, mailbox
       @frequency = frequency
-      @reciever = retriver
-      @notifier = notifier
+      @mailbox   = mailbox
     end
 
     # Begin monitoring the mailbox
     #
-    def start
-      
+    def start #TODO: fix up this logic
+      prev_message = @mailbox.last
+      @thread = Thread.new do
+        loop do
+          sleep( @frequency)
+          @mailbox.last == prev_message ? notify : prev_message = @mailbox.last
+        end
+      end
     end
+
 
     # Begin monitoring the mailbox
     #
     def stop
+      @thread.kill
+      @thread.join
     end
 
+    private
+      # Notify a fault has occured
+      #
+      def notify
+        @mailbox.deliver do
+          from 'piss'
+          to   'larry.testone@gmail.com'
+          subject 'piss'
+        end
+        puts 'notify'
+      end
+
+      # Finds new messages with the matched string
+      #
+      
   end
 end
