@@ -1,4 +1,4 @@
-delivery: 
+notifier: 
   method:                smtp
   address:               smtp.gmail.com
   port:                  587
@@ -7,6 +7,10 @@ delivery:
   password:              NzoDUsi89lMF
   authentication:        plain
   enable_starttls_auto:  true
+  message:
+    subject: piss_subject
+    body: piss_body
+    to:   larry.testone@gmail.com
 
 retriever: 
  method:      imap
