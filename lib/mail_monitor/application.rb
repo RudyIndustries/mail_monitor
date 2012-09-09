@@ -4,7 +4,6 @@ require 'yaml'
 
 module MailMonitor
 
-  ######################################################################
   # MailMonitor main application object.  When invoking +mail_monitor+ from the
   # command line, a MailMonitor::Application object is created and run.
   #
@@ -21,20 +20,6 @@ module MailMonitor
 
 
     def run
-      mail = Mail.defaults do
-        delivery_method :smtp, { :address              => 'smtp.gmail.com',
-                                 :port                 => 587,
-                                 :domain               => 'gmail.com',
-                                 :user_name            => 'larry.testone@gmail.com',
-                                 :password             => 'NzoDUsi89lMF',
-                                 :authentication       => 'plain',
-                                 :enable_starttls_auto => true }
-        retriever_method :imap, { :address    => 'imap.googlemail.com',
-                                  :port       => 993,
-                                  :user_name  => 'larry.testone@gmail.com',
-                                  :password   => 'NzoDUsi89lMF',
-                                  :enable_ssl => true }
-      end
       monitor = Monitor.new mail
       monitor.start
 
@@ -49,10 +34,8 @@ module MailMonitor
     end
 
     private
+      # checks the command line arguments
+      #
       def check_argv 
       end
-
-
-
-
   end
