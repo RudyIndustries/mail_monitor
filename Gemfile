@@ -1,7 +1,6 @@
+source 'http://rubygems.org'
+
 gem 'mail'
-gem 'shellwords'
-gem 'optparse'
-gem 'yaml'
 
 
 gem 'yard'
