@@ -9,18 +9,19 @@ module MailMonitor
     # @return [Int] the frequency in seconds the polling_address will be polled
     attr_accessor :frequency
 
-    # @return [Retriver] the address to be polled from
-    attr_accessor :retriver
+    # @return [Retriever] the address to be polled from
+    attr_accessor :retriever
 
     # @return [Notifier] the addresses to be notified when fault is identified.
     attr_accessor :notifier
 
-    #
+    # 
     #
     # @param [Int] frequency the frequency in seconds the polling_address will be polled
-    def initialize frequency, retriver, notifier
+    # @param [Retriever]
+    def initialize frequency, retriever, notifier
       @frequency = frequency
-      @retriver   = mailbox
+      @retriever   = retriever
       @notifier = notifier
     end
 

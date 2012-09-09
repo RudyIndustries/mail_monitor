@@ -1,5 +1,3 @@
-require 'shellwords'
-require 'optparse'
 require 'yaml'
 
 module MailMonitor
@@ -18,11 +16,11 @@ module MailMonitor
     # @return [Mail::Message] the addresses to be notified when fault is identified.
     attr_accessor :notifier
 
-
+    # Run the commanline application
+    #
     def run
       monitor = Monitor.new mail
       monitor.start
-
     end
 
     # gets the arguments input
@@ -39,3 +37,4 @@ module MailMonitor
       def check_argv 
       end
   end
+end
