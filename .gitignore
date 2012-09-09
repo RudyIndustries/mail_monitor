@@ -19,3 +19,6 @@ doc/
 
 # Vim
 *.swp
+
+# bundler
+Gemfile.lock
