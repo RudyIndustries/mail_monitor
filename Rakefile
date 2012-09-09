@@ -1,6 +1,6 @@
-gem 'rspec';    require 'rspec/core/rake_task'
-gem 'highline'; require 'highline/import'
-gem 'yard';     require 'yard'
+require 'rspec/core/rake_task'
+require 'highline/import'
+require 'yard'
 
 RSpec::Core::RakeTask.new('spec')
 
