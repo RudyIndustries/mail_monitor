@@ -4,7 +4,7 @@ require 'mail'
 #
 module MailMonitor
 
-  class Monitor
+  class Polling
 
     # @return [Int] the frequency in seconds the polling_address will be polled
     attr_accessor :frequency

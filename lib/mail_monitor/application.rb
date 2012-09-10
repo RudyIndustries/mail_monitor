@@ -19,8 +19,8 @@ module MailMonitor
     # Run the commanline application
     #
     def run
-      monitor = Monitor.new mail
-      monitor.start
+      polling = Polling.new mail
+      polling.start
     end
 
     # gets the arguments input
