@@ -16,6 +16,8 @@ Gem::Specification.new do |gem|
   gem.platform    = Gem::Platform::RUBY
   gem.add_dependency('mail', '~> 2.4.4')
   gem.add_development_dependency('yard')
+  gem.add_development_dependency('redcarpet') # TODO: This was needed for markdown 
+                                              # support when running a `yard server` from the command line.
   gem.add_development_dependency('aruba')
   gem.add_development_dependency('rake','~> 0.9.2')
 end
