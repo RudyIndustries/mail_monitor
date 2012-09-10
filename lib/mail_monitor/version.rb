@@ -1,6 +1,5 @@
 # encoding: utf-8
 module MailMonitor
-  module VERSION
 
     version = {}
     File.read(File.join(File.dirname(__FILE__), '../', 'VERSION')).each_line do |line|
@@ -14,11 +13,6 @@ module MailMonitor
     PATCH = version['patch']
     BUILD = version['build']
 
-    STRING = [MAJOR, MINOR, PATCH, BUILD].compact.join('.')
+    VERSION = [MAJOR, MINOR, PATCH, BUILD].compact.join('.')
 
-    def self.version
-      STRING
-    end
-
-  end
 end
