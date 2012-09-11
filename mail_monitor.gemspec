@@ -5,6 +5,7 @@ Gem::Specification.new do |gem|
   gem.name        = "mail_monitor"
   gem.authors     = ["Kurt Robert Rudolph"]
   gem.email       = ["rudolph.kurt@rudyindustries.com"]
+  gem.summary     = "MailMonitor"
   gem.description = "Monitors a mailbox"
 
   gem.files         = `git ls-files`.split($\)
