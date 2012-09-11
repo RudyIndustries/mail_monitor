@@ -1,12 +1,11 @@
-require 'rubygems'
 require 'mail'
 
 
-require 'mail_monitor/application'
-require 'mail_monitor/monitor'
-require 'mail_monitor/mail_monitor_module'
+require_relative'mail_monitor/mail_monitor_module'
+require_relative'mail_monitor/application'
+require_relative 'mail_monitor/polling'
 
-require 'mail_monitor/version'
+require_relative 'mail_monitor/version'
 
 
 
