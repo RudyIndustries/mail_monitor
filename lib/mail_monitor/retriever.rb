@@ -9,15 +9,5 @@ module MailMonitor
     #   accessable.
     attr_accessor :retriever
 
-    # Check the mailbox
-    #
-    # TODO: needs to check that in the given a frequency
-    # a new message has arrived
-    # TODO: Add support for matching attributes of the 
-    # messages begin checked
-    # @return [bool] indicates if a fault has occured
-    def check
-    end
-
   end
 end

@@ -13,7 +13,7 @@ module MailMonitor
     attr_accessor :retriever
 
     # @return [Notifier] the addresses to be notified when fault is identified.
-    attr_accessor :notifier
+    #attr_accessor :notifier # you should access the original object passed to it
 
     # 
     #
@@ -21,17 +21,19 @@ module MailMonitor
     # @param [Retriever]
     def initialize frequency, retriever, notifier
       @frequency = frequency
-      @retriever   = retriever
-      @notifier = notifier
+      @retriever = retriever
+      @notifier  = notifier
+      @last_message  = nil
     end
 
     # Begin monitoring the mailbox
     #
     def start
+      @last_message_date ||= @retriever.last.date
       @thread = Thread.new do
         loop do
           sleep( @frequency)
-          @notifier.notify if @retriver.check!
+          check  
         end
       end
     end
@@ -42,6 +44,17 @@ module MailMonitor
       @thread.kill
       @thread.join
     end
+
+    private
+      # Check if a fault has occured
+      #
+      # TODO: Add support for matching attributes of the 
+      # messages begin checked
+      # @return [bool] indicates if a fault has occured
+      def check
+         @notifier.notify if @last_message_date == @retriever.last.date
+         return true
+      end
 
   end
 end
