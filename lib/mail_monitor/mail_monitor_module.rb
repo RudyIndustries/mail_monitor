@@ -1,4 +1,4 @@
-require 'mail_monitor/application'
+require_relative 'application'
 
 module MailMonitor
 

@@ -4,6 +4,9 @@ module MailMonitor
     # @return [Mail::Message] The message object
     attr_accessor :message
 
+    def initialize
+    end
+
     # Notify a fault has occured
     #
     def notify frequency
