@@ -1,17 +1,19 @@
 require_relative 'spec_helper'
 require 'pry'
+require 'mail'
 
 describe MailMonitor::Polling do
   before(:each) do
-    include_relative 'fixtures/mail_defaults'
+    load_relative 'fixtures/mail_defaults.rb'
     @polling_frequency = 4
-    message = MailMonitor::Notifier.new do
+    @message = Mail.new do
       to 'larry.testone@gmail.com'
       from 'yo'
-      subject 'test'
+      subject rand( 0..1024).to_s
       body 'test'
     end
-    @polling = MailMonitor::Polling.new @polling_frequency, MailMonitor::Retriever.new, message
+    @mail = Mail
+    @polling = MailMonitor::Polling.new @polling_frequency, @mail, @message
   end 
     
   it "should start and stop the polling before the end of @polling_frequency" do
@@ -21,7 +23,8 @@ describe MailMonitor::Polling do
   end
   it "should detect a fault" do
     @polling.start
-    sleep (@polling_frequency * 2)
+    sleep (@polling_frequency * 4)
     @polling.stop
+    @mail.last.subject.should eq( @message.subject)
   end
 end 

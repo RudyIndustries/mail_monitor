@@ -7,8 +7,8 @@ require_relative '../lib/mail_monitor'
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 # just like require_relative
-def include_relative(path)
-  include File.join(File.dirname(caller[0]), path.to_str) 
+def load_relative(path)
+  load File.join(File.dirname(caller[0]), path.to_str) 
 end
 
 
