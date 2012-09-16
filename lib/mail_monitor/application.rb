@@ -6,35 +6,33 @@ module MailMonitor
   # command line, a MailMonitor::Application object is created and run.
   #
   class Application
-
-    # @return [Int] the frequency in seconds the polling_address will be polled
-    attr_accessor :frequency
-
-    # @return [Mail::Retriver] the address to be polled from
-    attr_accessor :retriver
-
-    # @return [Mail::Message] the addresses to be notified when fault is identified.
-    attr_accessor :notifier
-
     # Run the commanline application
     #
     def run
-      polling = Polling.new mail
+      argv
+      polling = Polling.new @polling_frequency @mail
       polling.start
     end
 
-    # gets the arguments input
-    #
-    def argv
-      check_argv
-      config = YAML.load_file( ARGV[0]) #TODO Some kind of catch/rescue
-      @notifier.deliver
-    end
 
     private
-      # checks the command line arguments
+      # gets the arguments input
       #
-      def check_argv 
+      def argv
+        # TODO: I don't know how I would like to orient the configuration.
+        # Furthermore, I don't know if I even want to use a Yaml file,
+        # I am tempted to just include a configuration of a mail object
+        # but I fear that that is a bit of a security whole provided this
+        # is is to be input via a command line.
+        config = YAML.load_file( ARGV[0]) #TODO Some kind of catch/rescue
+        check_config config
+      end
+
+      # checks the command line arguments
+      # 
+      # @arg [Hash] config the configuration of the Mail object.
+      # TODO: some checks
+      def check_config config
       end
   end
 end
